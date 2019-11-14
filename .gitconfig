@@ -1,0 +1,32 @@
+[user]
+	name = Roy Motloutsi
+	email = roy.motloutsi@gmail.com
+[branch]
+	autosetuprebase = always
+[color]
+	ui = true
+	status = auto
+	branch = auto
+[core]
+	editor = nvim
+[merge]
+	tool = vimdiff
+[diff]
+  tool = vimdiff
+[alias]
+	co = checkout
+	cm = commit
+	st = status
+	rv = revert
+	br = branch
+	rs = reset
+	ps = push
+	pl = pull
+	hs = log --pretty=format:\"%h %ad | %s %d [%an]\" --graph --date=format:'%Y-%m-%d %H:%M'
+    lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen%ad%C(yellow)%d%Creset | %s %C(bold blue)[%an]%Creset' --abbrev-commit --date=format:'%Y-%m-%d %H:%M'
+	pb = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+	type = cat-file -t
+	dump = cat-file -p
+	tch = log --pretty=format:\"\t-%s %d [%an]\"
+[push]
+	default = simple

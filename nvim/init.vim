@@ -7,7 +7,7 @@ endif
 filetype plugin indent on
 syntax enable
 "set guifont=Monac:h12
-set guifont=Fira\ Code\ Retina\ 12
+set guifont=Fira\ Code\ Retina\ 11
 syntax on
 
 set hidden
@@ -21,121 +21,109 @@ set shortmess+=c
 set signcolumn=yes
 set list listchars=tab:▸\ ,trail:·,precedes:←,extends:→
 
+" Set indentation line char
 let g:indentLine_char = '│'
 "where 'c' can be any ASCII character. You can also use one of ¦, ┆, │, ⎸
 
-"let &colorcolumn=join(range(81,999),",")
-set cc=80
-highlight ColorColumn ctermbg=235 guibg=#1B202A
-highlight Normal ctermbg=235 guibg=#171b25
+" Show  80 char line
+"set cc=80
+
+set lazyredraw
 
 
+" highlight current line number
+hi clear CursorLine
+augroup CLClear
+    autocmd! ColorScheme * hi clear CursorLine
+augroup END
+set cursorline
+
+" Quick edit
+nmap <leader>v :edit<space>
+
+" Close current file buffer
+nmap <leader>bq :bp <BAR> bd #<cr>
 
 
+"hi LineNr guibg=bg
+"set foldcolumn=2
+"hi foldcolumn guibg=bg
+"hi Normal guibg=#1e1e1e
 
 """""""""""""""""""""""
-" Vim Plug
+"=> Vim Plug
 """""""""""""""""""""""
 "
 call plug#begin('~/.local/share/nvim/plugged')
 
 "plugins
-
-"Plug 'haya14busa/incsearch.vim'
-"Plug 'Shougo/denite.nvim'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'OrangeT/vim-csharp'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'Shougo/vimproc.vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
+Plug 'vitalk/vim-simple-todo'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'benmills/vimux'
+Plug 'janko/vim-test'
 Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'gcmt/taboo.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'calviken/vim-gdscript3'
-Plug 'rustushki/JavaImp.vim'
 Plug 'fatih/vim-go'
-Plug 'https://github.com/luochen1990/rainbow'
-Plug 'https://github.com/davisdude/vim-love-docs'
-Plug 'https://github.com/alols/vim-love-efm.git'
-Plug 'https://github.com/easymotion/vim-easymotion.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/mattn/emmet-vim.git'
-Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'https://github.com/majutsushi/tagbar.git'
-Plug 'https://github.com/jistr/vim-nerdtree-tabs.git'
-Plug 'https://github.com/kien/ctrlp.vim'
-Plug 'https://github.com/jmcomets/vim-pony'
-Plug 'https://github.com/vim-scripts/taglist.vim.git'
+Plug 'luochen1990/rainbow'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'majutsushi/tagbar'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim'
+Plug 'jmcomets/vim-pony'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'Shougo/unite.vim'
 Plug 'mhartington/vim-typings'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'szw/vim-maximizer'
 Plug 'Raimondi/delimitMate'
 Plug 'https://github.com/othree/javascript-libraries-syntax.vim'
-Plug 'https://github.com/MarcWeber/vim-addon-local-vimrc'
-Plug 'neomake/neomake'
-"Plug 'dense-analysis/ale'
-Plug 'Shougo/vimproc.vim'
-"Plug '"thirtythreeforty/lessspace.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
-" theme
 "themes
-Plug 'sonph/onehalf'
+Plug 'markvincze/panda-vim'
+Plug 'colepeters/spacemacs-theme.vim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'mg979/vim-studio-dark'
-Plug 'ayu-theme/ayu-vim'
-Plug 'https://github.com/float168/vim-colors-cherryblossom'
-Plug 'hzchirs/vim-material'
 Plug 'arcticicestudio/nord-vim'
-Plug 'https://github.com/lu-ren/SerialExperimentsLain'
 Plug 'https://github.com/dracula/vim'
-Plug 'https://github.com/NewProggie/NewProggie-Color-Scheme'
-Plug 'https://github.com/zcodes/vim-colors-basic'
-Plug 'https://github.com/tokers/Magellan'
-Plug 'https://github.com/nightsense/seabird'
-Plug 'https://github.com/zcodes/vim-colors-basic'
 Plug 'https://github.com/nightsense/seabird'
 Plug 'https://github.com/rakr/vim-one'
-Plug 'https://github.com/davidklsn/vim-sialoquent'
 Plug 'https://github.com/zanglg/nova.vim'
-Plug 'https://github.com/morhetz/gruvbox'
 Plug 'https://github.com/Konstruktionist/vim'
 Plug 'https://github.com/aliou/moriarty.vim'
 Plug 'https://github.com/KeitaNakamura/neodark.vim'
 Plug 'https://github.com/Blevs/vim-dzo'
 Plug 'https://github.com/kamwitsta/nordisk'
-Plug 'https://github.com/kamwitsta/mythos'
 Plug 'https://github.com/tyrannicaltoucan/vim-quantum'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
-Plug 'https://github.com/jnurmine/Zenburn.git'
-Plug 'https://github.com/joshdick/onedark.vim'
-Plug 'https://github.com/whatyouhide/vim-gotham'
-Plug 'https://github.com/MvanDiemen/ghostbuster'
-Plug 'https://github.com/easysid/mod8.vim'
-Plug 'https://github.com/morhetz/gruvbox'
-Plug 'https://github.com/jackiehluo/vim-material'
 Plug 'flazz/vim-colorschemes'
 Plug 'https://github.com/jacoborus/tender.vim'
-Plug 'https://github.com/muellan/am-colors'
-Plug 'https://github.com/andbar-ru/vim-unicon'
-Plug 'https://github.com/raphamorim/lucario'
 
 " Initialize plugin system
 call plug#end()
@@ -145,25 +133,28 @@ call plug#end()
 """""""""""""""""""""""
 
 set background=dark
-"color Kafka
+"color nord
 "color dzo
 "color quantum
 "color neodark
-"color OceanicNext
-"color github
-"color nord
-color deep-space
+"color petrel
+"color moriarty
+"color tender
+"color nova
+"color spacegray
+color spacemacs-theme
+"color space-vim-dark
+"color deep-space
+"color dracula
+"color vsdark
+"color codedark
+"color one
+hi Normal guibg=#1e1e1e
 
 set termguicolors
-let ayucolor="mirage"
-highlight Normal ctermbg=235 guibg=#0B121C
-"highlight ColorColumn ctermbg=235 guibg=#1B202A
-highlight ColorColumn ctermbg=235 guibg=#171b25
-
-hi LineNr guibg=bg
-set foldcolumn=2
-hi foldcolumn guibg=bg
+" Hide vertical split line
 hi VertSplit guibg=bg guifg=bg
+
 
 """""""""""""""""""""""
 "=> VIM STUFF
@@ -173,7 +164,6 @@ hi VertSplit guibg=bg guifg=bg
 let g:python2_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
-"nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 tnoremap <Esc> <C-\><C-n>
 
@@ -297,8 +287,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>tk :tabnext<cr>
 map <leader>tj :tabprevious<cr>
-map <leader>tr :TabooRename<space>
 map <leader>tx :TabooReset<cr>
+map <leader>tr :TabooRename<space>
 
 "Opens a new tab with the current buffer's path
 "Super useful when editing files in the same directory
@@ -344,8 +334,39 @@ EOF
 """""""""""""""""""""""
 "=> TAGBAR
 """""""""""""""""""""""
-nmap <F8> :TagbarToggle<CR>
-
+nmap <F8> :TagbarOpenAutoClose<CR>
+nmap <C-F8> :TagbarToggle<CR>
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+  \ }
+"let g:tagbar_type_typescript = {
+  "\ 'ctagsbin' : 'tstags',
+  "\ 'ctagsargs' : '-f-',
+  "\ 'kinds': [
+    "\ 'e:enums:0:1',
+    "\ 'f:function:0:1',
+    "\ 't:typealias:0:1',
+    "\ 'M:Module:0:1',
+    "\ 'I:import:0:1',
+    "\ 'i:interface:0:1',
+    "\ 'C:class:0:1',
+    "\ 'm:method:0:1',
+    "\ 'p:property:0:1',
+    "\ 'v:variable:0:1',
+    "\ 'c:const:0:1',
+  "\ ],
+  "\ 'sort' : 0
+"\ }
 
 """""""""""""""""""""""
 "=> NERDTREE
@@ -357,12 +378,17 @@ let g:NERDTreeWinPos = "left"
 "let g:NERDTreeWinPos = 'rightbelow'
 
 "Hide object files
-let NERDTreeIgnore=['.DS_Store', '\.meta$', 'node_modules', '\.pyc$', '\~$', '\.o$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$'] "ignore files in NERDTree
+let NERDTreeIgnore=[
+   \'.DS_Store', '\.meta$', 'node_modules', '\.pyc$',
+   \'\~$', '\.o$', '^tags$', '\.git$[[dir]]',
+   \'\.idea$[[dir]]', '\.sass-cache$',
+   \] "ignore files in NERDTree
 
 
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeStatusline = ''
+
 " Automaticaly close nvim if NERDTree is only thing left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -426,8 +452,9 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme='papercolor'
 "let g:airline_theme='cool'
 "let g:airline_theme='laederon'
-"let g:airline_theme='quantum'
-let g:airline_theme='neodark'
+let g:airline_theme='quantum'
+"let g:airline_theme='neodark'
+"let g:airline_theme='codedark'
 "let g:airline_theme='kalisi'
 "let g:airline_theme='dzo'
 "let g:airline_theme='nord'
@@ -451,12 +478,12 @@ let g:ctrlp_custom_ignore = {
 " This makes a lot of sense if you are working on a project that is in
 " version
 " control. It also supports works with .svn, .hg, .bzr.
-"let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_working_path_mode = '0'
 
 
 " Use a leader instead of the actual named binding
-"nmap <leader>p :CtrlP<cr>
+nmap <leader>p :CtrlP<cr>
 
 " Easy bindings for its various modes
 nmap <leader>bb :CtrlPBuffer<cr>
@@ -467,14 +494,14 @@ nmap <leader>bs :CtrlPMRU<cr>
 "=> BUFFERGATOR
 """""""""""""""""""""""
 
-" Use the right side of the screen
-let g:buffergator_viewport_split_policy = 'R'
+" Use the top part of the screen
+let g:buffergator_viewport_split_policy = 'T'
 
 " I want my own keymappings...
 let g:buffergator_suppress_keymaps = 1
 
 " Looper buffers
-"let g:buffergator_mru_cycle_loop = 1
+let g:buffergator_mru_cycle_loop = 1
 
 " Go to the previous buffer open
 nmap <leader>n :BuffergatorMruCyclePrev<cr>
@@ -484,10 +511,6 @@ nmap <leader>m :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
 nmap <leader>bl :BuffergatorOpen<cr>
-
-" Shared bindings from Solution #1 from earlier
-nmap <leader>e :edit<space>
-nmap <leader>bq :bp <BAR> bd #<cr>
 
 
 """""""""""""""""""""""
@@ -503,7 +526,7 @@ nmap <leader>gd :Gdiff<CR>
 nmap <leader>ge :Gedit<CR>
 nmap <leader>gr :Gread<CR>
 nmap <leader>gw :Gwrite<CR><CR>
-nmap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nmap <leader>gl :silent! Glog <CR>:bot copen<CR>
 nmap <leader>gp :Ggrep<Space>
 nmap <leader>gm :Gmove<Space>
 nmap <leader>gb :Git branch<Space>
@@ -517,22 +540,9 @@ nmap <leader>gbl :Gblame<CR>
 """""""""""""""""""""""
 "=> GIT GUTTER
 """""""""""""""""""""""
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 nmap <leader>gg :GitGutterToggle<CR>
 nmap <leader>ggh :GitGutterLineHighlightsToggle<CR>
-
-"""""""""""""""""""""""
-"=> MULTIPLE CURSORS
-"""""""""""""""""""""""
-
-" Disable default mappings
-let g:multi_cursor_use_default_mapping=0
-
-" Remap
-let g:multi_cursor_next_key='<C-u>'
-let g:multi_cursor_prev_key='<C-i>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""
 "=> JS LIB SYNTAX
@@ -542,76 +552,46 @@ let g:used_javascript_libs = ''
 
 
 """""""""""""""""""""""
-"=> NEOMAKE
-"""""""""""""""""""""""
-
- "Run NeoMake on read and write operations
-autocmd! BufReadPost,BufWritePost,CursorHold * Neomake
-let g:neomake_javascript_eslint_maker = {
-        \ 'pipe': 1,
-        \ 'args': ['-f', 'compact', '--stdin', '--stdin-filename', '%:p'],
-        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-        \ '%W%f: line %l\, col %c\, Warning - %m'
-        \ }
-
-autocmd! CursorHold *.js,*.jsx,*.ts,*.tsx Neomake
-
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
-
-let g:neomake_javascript_enabled_makers = ['tslint']
-"let g:neomake_cpp_enabled_makers = ['gcc']
-
-"let g:neomake_php_enabled_makers = ['php']
-
-"""""""""""""""""""""""
-"=> ALE
-"""""""""""""""""""""""
-
-"let g:ale_fixers = {
-"\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-"\   'javascript': ['eslint'],
-"\   'typescript': ['tslint'],
-"\}
-
-"" fix on save
-"let g:ale_fix_on_save = 1
-
-"""""""""""""""""""""""
 "=> GOYO
 """""""""""""""""""""""
 
 function! s:goyo_enter()
+    " Hide tmux output
     silent !tmux set status off
     silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+
     set noshowmode
     set noshowcmd
     set scrolloff=999
+
+    " Turn on limelight
     Limelight
 endfunction
 
 function! s:goyo_leave()
+    " Show tmux output
     silent !tmux set status on
     silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+
     set showmode
     set showcmd
     set scrolloff=5
-    "color neodark
-    "color quantum
-    color deep-space
-    "color OceanicNext
+
+    " Set bg color
+    color spacemacs-theme
     set termguicolors
-    highlight Normal ctermbg=235 guibg=#0B121C
-    hi LineNr guibg=bg
-    set foldcolumn=2
-    hi foldcolumn guibg=bg
+    hi Normal guibg=#1e1e1e
+
+    " Hide vertical split line
     hi VertSplit guibg=bg guifg=bg
-    "let ayucolor="mirage"
-    "colorscheme ayu
+
+    " Setup airline
     let g:airline_powerline_fonts = 1
     let g:airline_theme='neodark'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':t'
+
+    " Turn off limelight
     Limelight!
 endfunction
 
@@ -620,10 +600,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 nmap <leader>z :Goyo<cr>
 
 
-"""""""""""""""""""""""
-"=> LiteDFM
-"""""""""""""""""""""""
-"nnoremap <leader>z :LiteDFMToggle<cr>
 
 """""""""""""""""""""""
 "=> Ultisnips
@@ -641,9 +617,10 @@ let g:UltiSnipsSnippetsDir = "~/.config/nvim/ultisnips/UltiSnips"
 let g:coc_global_extensions = [
 	\'coc-emoji', 'coc-eslint', 'coc-prettier',
 	\'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin',
-	\'coc-css', 'coc-json', 'coc-python', 'coc-yaml',
+	\'coc-css', 'coc-json', 'coc-python', 'coc-yaml', 'coc-java',
 	\'coc-omnisharp', 'coc-emmet', 'coc-html', 'coc-vetur',
 	\'coc-ultisnips', 'coc-gocode', 'coc-xml', 'coc-snippets',
+    \'coc-phpls', 'coc-go'
 \]
 
 
@@ -758,65 +735,127 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+"""""""""""""""""""""""
+"=> FZF
+"""""""""""""""""""""""
+if has("nvim")
+  au TermOpen * tnoremap <Esc> <c-\><c-n>
+  au FileType fzf tunmap <Esc>
+endif
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': '10new' }
+
+" Customize fzf colors to match your color scheme
+"let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+  "\ 'bg':      ['bg', 'Normal'],
+  "\ 'hl':      ['fg', 'Comment'],
+  "\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  "\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  "\ 'hl+':     ['fg', 'Statement'],
+  "\ 'info':    ['fg', 'PreProc'],
+  "\ 'border':  ['fg', 'Ignore'],
+  "\ 'prompt':  ['fg', 'Conditional'],
+  "\ 'pointer': ['fg', 'Exception'],
+  "\ 'marker':  ['fg', 'Keyword'],
+  "\ 'spinner': ['fg', 'Label'],
+  "\ 'header':  ['fg', 'Comment'] }
+
+"nnoremap <silent> <leader>b :call Fzf_dev()<CR>
+"nmap <C-p> :FZF<cr>
+nmap <C-f> :Rg<cr>
+
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+" Files + devicons
+function! Fzf_dev()
+  let l:fzf_files_options = '--preview "bat --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
+
+  function! s:files()
+    "let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(item)
+    let l:pos = stridx(a:item, ' ')
+    let l:file_path = a:item[pos+1:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'down':    '40%' })
+endfunction
+
 
 """""""""""""""""""""""
-"=> Denite
+"=> Vim Test
 """""""""""""""""""""""
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> tn :TestNearest<CR>
+nmap <silent> tf :TestFile<CR>
+nmap <silent> ts :TestSuite<CR>
+nmap <silent> tl :TestLast<CR>
+nmap <silent> tv :TestVisit<CR>
+let test#strategy = "vimux"
 
-"call denite#custom#var('file/rec', 'command', ['rg', '--hidden', '--files', '--glob', '!.git'])
-""
-"call denite#custom#var('grep', 'command', ['rg'])
-"call denite#custom#var('grep', 'default_opts', ['--smart-case', '--follow', '--hidden', '--vimgrep', '--heading'])
-"call denite#custom#var('grep', 'recursive_opts', [])
-"call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-"call denite#custom#var('grep', 'separator', ['--'])
-"call denite#custom#var('grep', 'final_opts', [])
+"""""""""""""""""""""""
+"=> Simple-TODO
+"""""""""""""""""""""""
+let g:simple_todo_tick_symbol='✔'
 
-"call denite#custom#map(
-		  "\ 'insert',
-		  "\ '<Down>',
-		  "\ '<denite:move_to_next_line>',
-		  "\ 'noremap'
-		  "\)
-"call denite#custom#map(
-		  "\ 'insert',
-		  "\ '<Up>',
-		  "\ '<denite:move_to_previous_line>',
-		  "\ 'noremap'
-		  "\)
+"""""""""""""""""""""""
+"=> Rainbow Brackets
+"""""""""""""""""""""""
+let g:rainbow_active = 1
 
-"" Remove date from buffer list
-"call denite#custom#var('buffer', 'date_format', '')
+"""""""""""""""""""""""
+"=> Git v
+"""""""""""""""""""""""
+let g:Gitv_WipeAllOnClose = 1
+let g:Gitv_OpenHorizontal= 1
+nmap <leader>gv :Gitv<CR>
 
-"" Custom options for Denite
-""   auto_resize             - Auto resize the Denite window height automatically.
-""   prompt                  - Customize denite prompt
-""   direction               - Specify Denite window direction as directly below current pane
-""   winminheight            - Specify min height for Denite window
-""   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-""   prompt_highlight        - Specify color of prompt
-""   highlight_matched_char  - Matched characters highlight
-""   highlight_matched_range - matched range highlight
-"let s:denite_options = {'default' : {
-"\ 'auto_resize': 1,
-"\ 'direction': 'rightbelow',
-"\ 'winminheight': '10',
-"\ 'highlight_mode_insert': 'Visual',
-"\ 'highlight_mode_normal': 'Visual',
-"\ 'prompt_highlight': 'Function',
-"\ 'highlight_matched_char': 'Function',
-"\ 'highlight_matched_range': 'Normal'
-"\ }}
-
-"" Loop through denite options and enable them
-"function! s:profile(opts) abort
-  "for l:fname in keys(a:opts)
-    "for l:dopt in keys(a:opts[l:fname])
-      "call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    "endfor
-  "endfor
-"endfunction
-
-"call s:profile(s:denite_options)
-
-"nmap _ :DeniteProjectDir -split=floating -winrow=1 file/rec grep:::!<CR>
+"""""""""""""""""""""""
+"=> NerdTree Git
+"""""""""""""""""""""""
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✦",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "￭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "＝",
+    \ "Deleted"   : "‼",
+    \ "Dirty"     : "⧺",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"}
