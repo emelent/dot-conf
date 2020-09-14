@@ -1,0 +1,53 @@
+let mapleader=","
+set easymotion
+set visualbell
+set noerrorbells
+
+"Clear trailing white space
+nmap <leader>ss :%s/\s\+$//e<cr>
+
+"Fast Quit
+nmap <leader>q :q<cr>
+nmap <leader>qa :action CloseAllEditors<cr>
+nmap <leader>ql :action CloseAllToTheLeft<cr>
+nmap <leader>qr :action CloseAllToTheRight<cr>
+nmap <leader>qo :action CloseAllToTheLeft<cr>:action CloseAllToTheRight<cr>
+
+"Fast Write Quit
+nmap <leader>wqa :wqa<cr>
+nmap <leader>wq :wq<cr>
+
+
+"Splits
+nmap <leader>vs :vsplit<CR>
+nmap <leader>bs :split<CR>
+
+"Toggle relative line numbers
+map <S-n> :set rnu!<CR>
+
+" Idea Actions
+map <S-b> :action ToggleLineBreakpoint<CR>
+
+nmap <leader>d :action GotoPreviousError<CR>
+nmap <leader>f :action GotoNextError<CR>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gb :action JumpToLastChange<CR>
+
+nnoremap U :action FindUsages<CR>
+    }
+
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
+
+" Fix these
+noremap <leader>b :action RebuildGradleProject<CR>
+vnoremap <leader>b :action RebuildGradleProject<CR>
+"""""""
+
+nnoremap zC :action CollapseRegionRecursively<CR>
+nnoremap zO :action ExpandRegionRecursively<CR>
+
+set ideajoin
