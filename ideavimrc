@@ -23,6 +23,7 @@ nmap <leader>vs :vsplit<CR>
 nmap <leader>bs :split<CR>
 
 "Toggle relative line numbers
+:set number relativenumber
 map <S-n> :set rnu!<CR>
 
 " Idea Actions
