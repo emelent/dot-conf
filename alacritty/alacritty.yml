@@ -1,0 +1,85 @@
+# Colors (Ayu Dark)
+#colors:
+  ## Default colors
+  #primary:
+    #background: '0x0A0E14'
+    #foreground: '0xB3B1AD'
+
+  ## Normal colors
+  #normal:
+    #black: '0x01060E'
+    #red: '0xEA6C73'
+    #green: '0x91B362'
+    #yellow: '0xF9AF4F'
+    #blue: '0x53BDFA'
+    #magenta: '0xFAE994'
+    #cyan: '0x90E1C6'
+    #white: '0xC7C7C7'
+
+  ## Bright colors
+  #bright:
+    #black: '0x686868'
+    #red: '0xF07178'
+    #green: '0xC2D94C'
+    #yellow: '0xFFB454'
+    #blue: '0x59C2FF'
+    #magenta: '0xFFEE99'
+    #cyan: '0x95E6CB'
+    #white: '0xFFFFFF'
+
+    # Colors (Pencil Dark)
+colors:
+ # Default Colors
+ primary:
+   background: '0x212121'
+   foreground: '0xb7bec9'
+ # Normal colors
+ normal:
+   black:   '0x212121'
+   red:     '0xc30771'
+   green:   '0x10a778'
+   yellow:  '0xa89c14'
+   blue:    '0x008ec4'
+   magenta: '0x523c79'
+   cyan:    '0x20a5ba'
+   white:   '0xe0e0e0'
+ # Bright colors
+ bright:
+   black:   '0x212121'
+   red:     '0xfb007a'
+   #green:   '0x5fd7af'
+   green:   '0x5F8787'
+   yellow:  '0xf3e430'
+   #blue:    '0x20bbfc'
+   blue:    '0x6facdd'
+   #magenta: '0x6855de'
+   magenta: '0x8E81DE'
+   cyan:    '0x4fb8cc'
+   white:   '0xf1f1f1'
+
+
+padding:
+    x: 4
+    y: 4
+
+font:
+  # Normal (roman) font face
+  normal:
+    family: 'Fira Code Retina'
+
+    # The `style` can be specified to pick a specific face.
+    style: Regular
+
+    size: 10.0
+
+key_bindings:
+  # (Windows/Linux only)
+  #- { key: V,        mods: Control|Shift, action: Paste            }
+  #- { key: C,        mods: Control|Shift, action: Copy             }
+  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Add,      mods: Control,       action: IncreaseFontSize }
+  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: Return,   mods: Alt,           action: ToggleFullscreen }
